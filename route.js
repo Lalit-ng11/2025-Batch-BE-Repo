@@ -43,6 +43,31 @@ route.delete('/delete', async (req,res)=>{
     }
 })
 
+// Update Data 
+route.put('/update', async (req,res) => {
+    let _id = req.body._id;
+    try {
+        const updateData = await UserModule.findByIdAndUpdate(_id,req.body);
+        res.send(updateData)
+        // console.log(updateData);
+        
+    } catch (error) {
+        console.log("Update Data Failed",error);
+        
+    }
+})
+
+// Show One User 
+route.get('/showOne', async (req,res)=>{
+    let id  = req.query.id;
+    try {
+        const showOne = await UserModule.findById(id);
+        res.send(showOne);
+    } catch (error) {
+        console.log("Show One Failed..!");
+        
+    }
+})
 
 module.exports = route;
 
