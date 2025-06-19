@@ -1,13 +1,28 @@
 // const express = require('express').Router();
 const route  = require("express").Router();
 const UserModule = require('./module');
+const {registerValidation} = require('./validation');
+const bcrypt = require('bcrypt');
 
 // Register User 
 route.post('/register',async (req,res)=>{
 
+    // Register Validation 
+    const {error} = registerValidation(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    // Email Validation 
+    const emailExist = await UserModule.findOne({email:req.body.email});
+    if(emailExist) return res.status(400).send("Email is Already Present..!");
+
+    // Passowrd Validation 
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.password,salt);
+
     const newUser = new UserModule({
         name:req.body.name,
         email:req.body.email,
+        password:hashPassword,
         mobile:req.body.mobile
     })
     try {
