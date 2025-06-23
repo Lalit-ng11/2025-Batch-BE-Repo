@@ -1,7 +1,7 @@
 // const express = require('express').Router();
 const route  = require("express").Router();
 const UserModule = require('./module');
-const {registerValidation} = require('./validation');
+const {registerValidation,loginValidation} = require('./validation');
 const bcrypt = require('bcrypt');
 
 // Register User 
@@ -32,6 +32,24 @@ route.post('/register',async (req,res)=>{
         console.log(`Registration Failed...${error}`);
         
     }
+})
+
+// Login User 
+route.post('/login',async (req,res)=>{
+
+    // Login Validation 
+    const{error} = loginValidation(req.body);
+    if(error) return res.status(404).send(error.details[0].message);
+
+    // Email Validation 
+    const userExist = await UserModule.findOne({email:req.body.email});
+    if(!userExist) return res.status(404).send("-----Email not Found..!-----");
+
+    // Password Validation
+    const isPass = await bcrypt.compare(req.body.password,userExist.password);
+    if(!isPass) return res.status(404).send("-----Password is Invalid..!-----");
+
+    res.send("Login Successfull..!");
 })
 
 // Show Data of Users 
