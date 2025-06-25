@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const router = require('./route');
+const env = require('dotenv');
+env.config();
 
 // Middleware 
 app.use(express.json());
 app.use('/user',router)
 
-mongoose.connect("mongodb+srv://lalitpatilitp:lalitpatilitp11@firstcluster0.lm4pq.mongodb.net/?retryWrites=true&w=majority&appName=FirstCluster0")
+mongoose.connect(process.env.DB_Connection)
 .then(()=>{
     console.log("------- DB_Connection Successfull.....!");
     
