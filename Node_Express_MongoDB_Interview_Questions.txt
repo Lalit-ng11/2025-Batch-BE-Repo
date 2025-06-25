@@ -1,0 +1,104 @@
+
+Node.js, Express.js, and MongoDB Interview Questions and Answers for Freshers
+
+Node.js Questions:
+
+1. What is Node.js, and how does it work?
+   - Answer: Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows us to run JavaScript on the server side. Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient for building scalable, high-performance applications.
+
+2. What is the event-driven architecture in Node.js?
+   - Answer: In Node.js, everything revolves around events. When a request is made, Node.js places the request into an event queue and moves on to handle other tasks. The requests are processed asynchronously as events are triggered, meaning it doesn't wait for one operation to finish before starting the next. This allows Node.js to handle multiple requests simultaneously.
+
+3. What are the core modules in Node.js?
+   - Answer: Some of the core modules in Node.js are:
+     - http: For handling requests and responses.
+     - fs: For handling file system operations like reading and writing files.
+     - path: For working with file and directory paths.
+     - os: For accessing information about the operating system.
+     - events: For working with event-driven programming.
+
+4. What is npm, and how is it used in Node.js?
+   - Answer: npm (Node Package Manager) is the default package manager for Node.js. It allows developers to download and manage packages (libraries and modules) to be used in their Node.js applications. You can install packages globally or locally using commands like npm install package-name.
+
+5. What is the difference between synchronous and asynchronous functions in Node.js?
+   - Answer: Synchronous functions are blocking, meaning that the program waits for the function to complete before executing the next line of code. In contrast, asynchronous functions are non-blocking, so the program can execute the next line of code while waiting for the result. Asynchronous code in Node.js is typically handled using callbacks, promises, or async/await.
+
+Express.js Questions:
+
+1. What is Express.js, and why is it used?
+   - Answer: Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features for building web and mobile applications. It simplifies the process of building web servers and APIs by handling common tasks like routing, middleware, and handling HTTP requests and responses.
+
+2. How do you create a basic Express.js application?
+   - Answer: A basic Express.js application can be created as follows:
+     const express = require('express');
+     const app = express();
+
+     app.get('/', (req, res) => {
+         res.send('Hello World!');
+     });
+
+     app.listen(3000, () => {
+         console.log('Server is running on port 3000');
+     });
+     Here, we create an Express app, define a route for the root URL (/), and start the server listening on port 3000.
+
+3. What is middleware in Express.js?
+   - Answer: Middleware in Express.js functions as a series of functions that are executed in sequence during the request-response cycle. Middleware can handle various tasks, such as logging, authentication, parsing request bodies, and error handling. Middleware functions have access to the request and response objects and the next() function that passes control to the next middleware.
+
+4. What are the different HTTP methods supported by Express.js?
+   - Answer: Express.js supports the common HTTP methods like:
+     - GET: For retrieving data from the server.
+     - POST: For submitting data to the server.
+     - PUT: For updating existing data.
+     - DELETE: For deleting data.
+     - PATCH: For partially updating data.
+
+5. How do you handle errors in Express.js?
+   - Answer: Errors in Express.js can be handled using a middleware function with four parameters: err, req, res, and next. For example:
+     app.use((err, req, res, next) => {
+         res.status(500).send('Something went wrong!');
+     });
+     This middleware catches any errors that occur during the request-response cycle and sends a response with an error message.
+
+MongoDB Questions:
+
+1. What is MongoDB, and how is it different from relational databases?
+   - Answer: MongoDB is a NoSQL database that stores data in a flexible, JSON-like format called BSON (Binary JSON). Unlike relational databases, MongoDB doesn't use tables and rows. Instead, it uses collections and documents. This allows for more flexibility in storing unstructured or semi-structured data and avoids the need for a predefined schema.
+
+2. What are the key features of MongoDB?
+   - Answer: Some key features of MongoDB include:
+     - Document-oriented storage: Data is stored in BSON documents, which allows for flexibility in data structure.
+     - Scalability: MongoDB supports horizontal scaling through sharding.
+     - Indexing: MongoDB supports indexing to optimize query performance.
+     - Replication: Data can be replicated across multiple servers for high availability.
+     - Aggregation framework: Provides powerful ways to analyze data within the database.
+
+3. Explain the difference between find() and findOne() in MongoDB.
+   - Answer: In MongoDB, find() retrieves multiple documents that match a query and returns a cursor to iterate over them, while findOne() retrieves only the first document that matches the query. For example:
+     db.collection.find({ age: 20 });   // Returns all documents where age is 20
+     db.collection.findOne({ age: 20 });  // Returns only the first document where age is 20
+
+4. What is Mongoose, and why is it used in Node.js applications?
+   - Answer: Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It provides a schema-based solution to model application data and includes built-in features for validation, casting, and querying MongoDB data. It simplifies the interaction with MongoDB by providing an easy-to-use API for managing documents in MongoDB collections.
+
+5. How do you perform CRUD operations in MongoDB using Mongoose?
+   - Answer:
+     - Create: Model.create() or new Model.save()
+     - Read: Model.find(), Model.findById(), or Model.findOne()
+     - Update: Model.updateOne(), Model.findByIdAndUpdate()
+     - Delete: Model.deleteOne(), Model.findByIdAndDelete()
+     Example:
+     const User = mongoose.model('User', new mongoose.Schema({ name: String }));
+     
+     // Create
+     const newUser = new User({ name: 'John' });
+     newUser.save();
+
+     // Read
+     User.find({ name: 'John' });
+
+     // Update
+     User.updateOne({ name: 'John' }, { name: 'Jane' });
+
+     // Delete
+     User.deleteOne({ name: 'Jane' });

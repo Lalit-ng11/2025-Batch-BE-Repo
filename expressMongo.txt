@@ -1,0 +1,34 @@
+----ExpressJs---------------
+
+What is Express.js, and why is it used in Node.js applications?
+How do you install Express.js in a Node.js project?
+How do you create a simple Express server that listens on port 3000?
+What is middleware in Express.js? Provide an example.
+How do you handle GET and POST requests in Express.js?
+What is the purpose of req.params and req.query in Express.js?
+How can you serve static files using Express.js?
+What is the difference between app.use() and app.get() in Express.js?
+How do you handle errors in Express.js?
+What is express.Router(), and why is it useful?
+How do you use CORS in an Express.js application?
+What is body-parser, and why is it used in Express.js?
+How can you implement authentication in Express.js using JWT?
+What are the advantages of using Express.js over plain Node.js?
+How do you connect an Express.js application to a MongoDB database?
+
+--------MongoDB-------------
+What is MongoDB, and how is it different from relational databases?
+What are the key components of MongoDB?
+How do you install and start MongoDB on your local machine?
+What is a collection in MongoDB?
+How do you create a new database in MongoDB?
+What is the difference between insertOne() and insertMany() in MongoDB?
+How do you retrieve all documents from a MongoDB collection?
+What is the difference between findOne() and find() in MongoDB?
+How do you update a document in MongoDB?
+What is the purpose of ObjectId in MongoDB?
+How do you delete a document from a MongoDB collection?
+What is indexing in MongoDB, and why is it important?
+What is aggregation in MongoDB, and when would you use it?
+How do you create relationships between documents in MongoDB?
+What is Mongoose, and how does it help in working with MongoDB in Node.js?
